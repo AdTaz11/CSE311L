@@ -1,0 +1,49 @@
+Week 5 
+
+Solution Activity 1 
+
+SELECT emps.Last_Name, emps.Hire_Date FROM emps
+WHERE emps.Department_Id =(SELECT Department_Id FROM emps
+where Last_Name = "Zlotkey") AND Last_Name <> "Zlotkey"
+
+Solution Activity 2
+
+SELECT emps.Employee_Id, emps.Last_Name, emps.Salary from emps
+where salary >(SELECT AVG(salary)FROM emps)
+ORDER BY Salary ASC
+
+Solution Activity 3
+
+SELECT emps.Last_Name, emps.Salary from emps 
+where Manager_id = (SELECT Employee_Id FROM emps 
+                    where emps.Last_Name = "KING")
+
+Solution Activity 4
+
+SELECT emps.Employee_Id, emps.Last_Name, emps.Salary FROM emps
+WHERE Department_Id IN (SELECT emps.Department_Id from emps WHERE emps.Last_Name like "%u%")
+AND
+Salary > ( SELECT AVG(Salary) from emps)
+
+Solution Activity 5
+
+CREATE TABLE `NewEmps` (
+  `Employee_Id` int(6) NOT NULL,
+  `First_Name` varchar(20) DEFAULT NULL,
+  `Last_Name` varchar(25) NOT NULL,
+  `Email` varchar(25) NOT NULL,
+  `Phone_Number` varchar(15) DEFAULT NULL)
+
+INSERT INTO NewEmps(Employee_Id,First_Name,Last_Name,Email,Phone_Number)
+SELECT Employee_Id,First_Name,Last_Name,Email,Phone_Number FROM emps
+
+
+Solution Activity 6
+
+CREATE TABLE `Emp` (
+  `Id` int(7),
+  `Last_Name` varchar(25) NOT NULL,
+  `First_Name` varchar(25) DEFAULT NULL,
+  `Dept_Id` int(7) )
+
+A. 
